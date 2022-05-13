@@ -5,9 +5,11 @@ import '../../application/edit_list_screen/cubit.dart';
 import '../../data/shopping_list_repository.dart';
 import '../../domain/lists/list.dart';
 import '../../injection.dart';
-import '../../utils/helpers/extensions.dart';
 import '../core/app_bar.dart';
-import '../core/text_field.dart';
+import 'widgets/list_name_field.dart';
+import 'widgets/save_button.dart';
+import 'widgets/style_select_button.dart';
+import 'widgets/style_select_sheet.dart';
 
 class EditListScreen extends StatelessWidget {
   final ShoppingList? initialShoppingList;
@@ -50,30 +52,7 @@ class _EditListView extends StatelessWidget {
           top: Radius.circular(16.0),
         ),
       ),
-      builder: (context) {
-        return DraggableScrollableSheet(
-          expand: false,
-          minChildSize: 0.25,
-          maxChildSize: 0.6,
-          initialChildSize: 0.25,
-          builder: (_, controller) => Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: GridView(
-              controller: controller,
-              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 78.0,
-                childAspectRatio: 1.0,
-                mainAxisSpacing: 6.0,
-                crossAxisSpacing: 6.0,
-              ),
-              children: [
-                for (var style in ShoppingListStyle.values)
-                  _StyleCard(style: style, cubit: cubit),
-              ],
-            ),
-          ),
-        );
-      },
+      builder: (_) => StyleSelectSheet(cubit: cubit),
     );
   }
 
@@ -91,62 +70,13 @@ class _EditListView extends StatelessWidget {
       child: Builder(builder: (context) {
         return Scaffold(
           appBar: QAppBar(
-            title: Text(
-              isNewList ? 'Add shopping list' : 'Edit shopping list',
-            ),
+            title: Text(isNewList ? 'Add shopping list' : 'Edit shopping list'),
           ),
-          floatingActionButton: cubit.state.name.isNotEmpty
-              ? FloatingActionButton(
-                  onPressed: () {
-                    cubit.savePressed();
-                    context.navigator.pop();
-                  },
-                  child: const Icon(Icons.save_outlined),
-                )
-              : null,
-          body: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Ink(
-                        height: 64.0,
-                        width: 64.0,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(32.0),
-                          color: cubit.state.style.color,
-                        ),
-                        child: InkWell(
-                          onTap: () => _showModal(context, cubit),
-                          borderRadius: BorderRadius.circular(32.0),
-                          child: Center(
-                            child: Text(
-                              cubit.state.style.emoji,
-                              style: const TextStyle(fontSize: 22.0),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: QTextField(
-                            height: 64.0,
-                            focusNode: titleFocusNode,
-                            backgroundColor:
-                                context.theme.colorScheme.surfaceVariant,
-                            initialValue: cubit.state.name,
-                            onChanged: cubit.nameChanged,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
+          floatingActionButton: SaveButton(cubit: cubit),
+          body: _Body(
+            cubit: cubit,
+            titleFocusNode: titleFocusNode,
+            onStyleSelectButtonTap: () => _showModal(context, cubit),
           ),
         );
       }),
@@ -154,34 +84,36 @@ class _EditListView extends StatelessWidget {
   }
 }
 
-class _StyleCard extends StatelessWidget {
-  final ShoppingListStyle style;
+class _Body extends StatelessWidget {
+  final FocusNode titleFocusNode;
   final EditListScreenCubit cubit;
-  const _StyleCard({
-    required this.style,
+  final void Function()? onStyleSelectButtonTap;
+  const _Body({
+    required this.titleFocusNode,
     required this.cubit,
+    this.onStyleSelectButtonTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Ink(
-      decoration: BoxDecoration(
-        color: style.color,
-        borderRadius: BorderRadius.circular(12.0),
-      ),
-      child: InkWell(
-        hoverColor: Colors.white10,
-        splashColor: Colors.white10,
-        borderRadius: BorderRadius.circular(12.0),
-        onTap: () {
-          cubit.stylePicked(style);
-          context.navigator.pop();
-        },
-        child: Center(
-          child: Text(
-            style.emoji,
-            style: const TextStyle(fontSize: 28.0),
-          ),
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                StyleSelectButton(
+                  style: cubit.state.style,
+                  onTap: onStyleSelectButtonTap,
+                ),
+                ListNameField(
+                  focusNode: titleFocusNode,
+                  cubit: cubit,
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
