@@ -94,17 +94,6 @@ class _EditListView extends StatelessWidget {
             title: Text(
               isNewList ? 'Add shopping list' : 'Edit shopping list',
             ),
-            actions: const [
-              // IconButton(
-              //   onPressed: cubit.state.name.isNotEmpty
-              //       ? () {
-              //           cubit.savePressed();
-              //           context.navigator.pop();
-              //         }
-              //       : null,
-              //   icon: const Icon(Icons.save_outlined),
-              // ),
-            ],
           ),
           floatingActionButton: cubit.state.name.isNotEmpty
               ? FloatingActionButton(
