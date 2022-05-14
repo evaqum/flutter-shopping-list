@@ -15,21 +15,21 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$ListsState {
+mixin _$ListsOverviewScreenState {
   List<ShoppingList> get shoppingLists => throw _privateConstructorUsedError;
   ShoppingList? get lastDeletedShoppingList =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $ListsStateCopyWith<ListsState> get copyWith =>
+  $ListsOverviewScreenStateCopyWith<ListsOverviewScreenState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ListsStateCopyWith<$Res> {
-  factory $ListsStateCopyWith(
-          ListsState value, $Res Function(ListsState) then) =
-      _$ListsStateCopyWithImpl<$Res>;
+abstract class $ListsOverviewScreenStateCopyWith<$Res> {
+  factory $ListsOverviewScreenStateCopyWith(ListsOverviewScreenState value,
+          $Res Function(ListsOverviewScreenState) then) =
+      _$ListsOverviewScreenStateCopyWithImpl<$Res>;
   $Res call(
       {List<ShoppingList> shoppingLists,
       ShoppingList? lastDeletedShoppingList});
@@ -38,12 +38,13 @@ abstract class $ListsStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ListsStateCopyWithImpl<$Res> implements $ListsStateCopyWith<$Res> {
-  _$ListsStateCopyWithImpl(this._value, this._then);
+class _$ListsOverviewScreenStateCopyWithImpl<$Res>
+    implements $ListsOverviewScreenStateCopyWith<$Res> {
+  _$ListsOverviewScreenStateCopyWithImpl(this._value, this._then);
 
-  final ListsState _value;
+  final ListsOverviewScreenState _value;
   // ignore: unused_field
-  final $Res Function(ListsState) _then;
+  final $Res Function(ListsOverviewScreenState) _then;
 
   @override
   $Res call({
@@ -76,7 +77,8 @@ class _$ListsStateCopyWithImpl<$Res> implements $ListsStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> implements $ListsStateCopyWith<$Res> {
+abstract class _$$_InitialCopyWith<$Res>
+    implements $ListsOverviewScreenStateCopyWith<$Res> {
   factory _$$_InitialCopyWith(
           _$_Initial value, $Res Function(_$_Initial) then) =
       __$$_InitialCopyWithImpl<$Res>;
@@ -90,7 +92,8 @@ abstract class _$$_InitialCopyWith<$Res> implements $ListsStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res> extends _$ListsStateCopyWithImpl<$Res>
+class __$$_InitialCopyWithImpl<$Res>
+    extends _$ListsOverviewScreenStateCopyWithImpl<$Res>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
       : super(_value, (v) => _then(v as _$_Initial));
@@ -137,7 +140,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'ListsState(shoppingLists: $shoppingLists, lastDeletedShoppingList: $lastDeletedShoppingList)';
+    return 'ListsOverviewScreenState(shoppingLists: $shoppingLists, lastDeletedShoppingList: $lastDeletedShoppingList)';
   }
 
   @override
@@ -163,7 +166,7 @@ class _$_Initial implements _Initial {
       __$$_InitialCopyWithImpl<_$_Initial>(this, _$identity);
 }
 
-abstract class _Initial implements ListsState {
+abstract class _Initial implements ListsOverviewScreenState {
   const factory _Initial(
       {final List<ShoppingList> shoppingLists,
       final ShoppingList? lastDeletedShoppingList}) = _$_Initial;

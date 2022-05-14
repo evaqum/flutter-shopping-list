@@ -19,17 +19,20 @@ class ProductAdapter extends TypeAdapter<_$_Default> {
     return _$_Default(
       title: fields[0] as String,
       checked: fields[1] as bool,
+      id: fields[2] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, _$_Default obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.title)
       ..writeByte(1)
-      ..write(obj.checked);
+      ..write(obj.checked)
+      ..writeByte(2)
+      ..write(obj.id);
   }
 
   @override

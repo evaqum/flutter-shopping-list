@@ -12,5 +12,6 @@ class Product with _$Product {
   const factory Product({
     @HiveField(0) required String title,
     @HiveField(1) @Default(false) bool checked,
+    @HiveField(2) required int id,
   }) = _Default;
 }

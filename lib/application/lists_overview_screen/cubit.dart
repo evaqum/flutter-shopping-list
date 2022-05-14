@@ -11,15 +11,20 @@ part 'cubit.freezed.dart';
 part 'state.dart';
 
 @injectable
-class ListsCubit extends Cubit<ListsState> {
+class ListsOverviewScreenCubit extends Cubit<ListsOverviewScreenState> {
   final ShoppingListRepository _shoppingListRepository;
   late final StreamSubscription<List<ShoppingList>> _streamSubscription;
 
-  ListsCubit(this._shoppingListRepository) : super(const ListsState()) {
+  ListsOverviewScreenCubit(this._shoppingListRepository)
+      : super(const ListsOverviewScreenState()) {
     _streamSubscription = _shoppingListRepository.lists.listen((listsList) {
       emit(state.copyWith(shoppingLists: listsList));
     });
   }
+
+  // void newListButtonPressed() {
+  //   emit(state.copyWith(buttonState: NewListButtonState.nameField));
+  // }
 
   void listRemoved(ShoppingList list) {
     _shoppingListRepository.deleteList(list);

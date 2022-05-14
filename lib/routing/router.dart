@@ -4,6 +4,7 @@ import '../domain/lists/list.dart';
 import '../presentation/edit_list/edit_list_screen.dart';
 import '../presentation/intro/intro_screen.dart';
 import '../presentation/lists_overview/lists_overview_screen.dart';
+import '../presentation/shopping_list/shopping_list_screen.dart';
 import '../presentation/unreachable/unreachable_screen.dart';
 
 abstract class QRouter {
@@ -19,6 +20,11 @@ abstract class QRouter {
         return ListsOverviewScreen.route();
       case introRoute:
         return IntroScreen.route();
+      case shoppingListRoute:
+        if (arguments is ShoppingList) {
+          return ShoppingListScreen.route(arguments);
+        }
+        break;
       case editListRoute:
         if (arguments is ShoppingList?) {
           return EditListScreen.route(arguments);
@@ -35,4 +41,5 @@ abstract class QRouter {
   static const String introRoute = 'intro';
 
   static const String editListRoute = 'editList';
+  static const String shoppingListRoute = 'shoppingList';
 }

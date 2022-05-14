@@ -16,11 +16,11 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$EditListScreenState {
-  ShoppingList? get initialShoppingList =>
-      throw _privateConstructorUsedError; // String? selectedEmoji,
-// Color? emojiColor,
+  ShoppingList? get initialShoppingList => throw _privateConstructorUsedError;
   ShoppingListStyle get style => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String get productName => throw _privateConstructorUsedError;
+  List<Product> get products => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $EditListScreenStateCopyWith<EditListScreenState> get copyWith =>
@@ -35,7 +35,9 @@ abstract class $EditListScreenStateCopyWith<$Res> {
   $Res call(
       {ShoppingList? initialShoppingList,
       ShoppingListStyle style,
-      String name});
+      String name,
+      String productName,
+      List<Product> products});
 
   $ShoppingListCopyWith<$Res>? get initialShoppingList;
 }
@@ -54,6 +56,8 @@ class _$EditListScreenStateCopyWithImpl<$Res>
     Object? initialShoppingList = freezed,
     Object? style = freezed,
     Object? name = freezed,
+    Object? productName = freezed,
+    Object? products = freezed,
   }) {
     return _then(_value.copyWith(
       initialShoppingList: initialShoppingList == freezed
@@ -68,6 +72,14 @@ class _$EditListScreenStateCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      productName: productName == freezed
+          ? _value.productName
+          : productName // ignore: cast_nullable_to_non_nullable
+              as String,
+      products: products == freezed
+          ? _value.products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
     ));
   }
 
@@ -93,7 +105,9 @@ abstract class _$$_DefaultCopyWith<$Res>
   $Res call(
       {ShoppingList? initialShoppingList,
       ShoppingListStyle style,
-      String name});
+      String name,
+      String productName,
+      List<Product> products});
 
   @override
   $ShoppingListCopyWith<$Res>? get initialShoppingList;
@@ -114,6 +128,8 @@ class __$$_DefaultCopyWithImpl<$Res>
     Object? initialShoppingList = freezed,
     Object? style = freezed,
     Object? name = freezed,
+    Object? productName = freezed,
+    Object? products = freezed,
   }) {
     return _then(_$_Default(
       initialShoppingList: initialShoppingList == freezed
@@ -128,6 +144,14 @@ class __$$_DefaultCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      productName: productName == freezed
+          ? _value.productName
+          : productName // ignore: cast_nullable_to_non_nullable
+              as String,
+      products: products == freezed
+          ? _value._products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
     ));
   }
 }
@@ -138,22 +162,33 @@ class _$_Default implements _Default {
   const _$_Default(
       {this.initialShoppingList,
       this.style = ShoppingListStyle.unknown,
-      this.name = ''});
+      this.name = '',
+      this.productName = '',
+      final List<Product> products = const []})
+      : _products = products;
 
   @override
   final ShoppingList? initialShoppingList;
-// String? selectedEmoji,
-// Color? emojiColor,
   @override
   @JsonKey()
   final ShoppingListStyle style;
   @override
   @JsonKey()
   final String name;
+  @override
+  @JsonKey()
+  final String productName;
+  final List<Product> _products;
+  @override
+  @JsonKey()
+  List<Product> get products {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_products);
+  }
 
   @override
   String toString() {
-    return 'EditListScreenState(initialShoppingList: $initialShoppingList, style: $style, name: $name)';
+    return 'EditListScreenState(initialShoppingList: $initialShoppingList, style: $style, name: $name, productName: $productName, products: $products)';
   }
 
   @override
@@ -164,7 +199,10 @@ class _$_Default implements _Default {
             const DeepCollectionEquality()
                 .equals(other.initialShoppingList, initialShoppingList) &&
             const DeepCollectionEquality().equals(other.style, style) &&
-            const DeepCollectionEquality().equals(other.name, name));
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality()
+                .equals(other.productName, productName) &&
+            const DeepCollectionEquality().equals(other._products, _products));
   }
 
   @override
@@ -172,7 +210,9 @@ class _$_Default implements _Default {
       runtimeType,
       const DeepCollectionEquality().hash(initialShoppingList),
       const DeepCollectionEquality().hash(style),
-      const DeepCollectionEquality().hash(name));
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(productName),
+      const DeepCollectionEquality().hash(_products));
 
   @JsonKey(ignore: true)
   @override
@@ -184,15 +224,20 @@ abstract class _Default implements EditListScreenState {
   const factory _Default(
       {final ShoppingList? initialShoppingList,
       final ShoppingListStyle style,
-      final String name}) = _$_Default;
+      final String name,
+      final String productName,
+      final List<Product> products}) = _$_Default;
 
   @override
   ShoppingList? get initialShoppingList => throw _privateConstructorUsedError;
-  @override // String? selectedEmoji,
-// Color? emojiColor,
+  @override
   ShoppingListStyle get style => throw _privateConstructorUsedError;
   @override
   String get name => throw _privateConstructorUsedError;
+  @override
+  String get productName => throw _privateConstructorUsedError;
+  @override
+  List<Product> get products => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_DefaultCopyWith<_$_Default> get copyWith =>

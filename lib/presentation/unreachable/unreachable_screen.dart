@@ -23,10 +23,11 @@ class UnreachableScreen extends StatelessWidget {
         title: const Text('⚠️ Oops'),
       ),
       body: Text(
-        "If you're seeing this, then you're probably in a wrong place\n"
-        'You might want to file this as an issue on {urlheresoon}\n'
-        'settings.name: ${settings.name}\n'
-        'settings.arguments: ${settings.arguments}',
+        "This route shouldn't be reached\n\n"
+        "This usually means that either the route with given name doesn't exist\n"
+        'or arguments passed to that route were incorrect\n\n'
+        '<RouteSettings>.name: ${settings.name}\n'
+        '<RouteSettings>.arguments: ${settings.arguments}',
       ),
     );
   }

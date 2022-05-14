@@ -4,9 +4,9 @@ part of 'cubit.dart';
 class EditListScreenState with _$EditListScreenState {
   const factory EditListScreenState({
     ShoppingList? initialShoppingList,
-    // String? selectedEmoji,
-    // Color? emojiColor,
     @Default(ShoppingListStyle.unknown) ShoppingListStyle style,
     @Default('') String name,
+    @Default('') String productName,
+    @Default([]) List<Product> products,
   }) = _Default;
 }

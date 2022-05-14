@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 import '../../../application/edit_list_screen/cubit.dart';
 import '../../../domain/lists/list.dart';

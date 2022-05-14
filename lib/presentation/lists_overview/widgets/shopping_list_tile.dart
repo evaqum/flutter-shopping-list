@@ -3,9 +3,10 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:quiver/time.dart';
 
-import '../../../application/lists/cubit.dart';
+import '../../../application/lists_overview_screen/cubit.dart';
 import '../../../domain/lists/list.dart';
 import '../../../routing/router.dart';
 import '../../../utils/helpers/extensions.dart';
@@ -45,6 +46,8 @@ class _ShoppingListTileState extends State<ShoppingListTile>
 
   @override
   Widget build(BuildContext context) {
+    int productsAmount = widget.shoppingList.products.length;
+
     return Dismissible(
       direction: DismissDirection.endToStart,
       onUpdate: (details) {
@@ -54,11 +57,16 @@ class _ShoppingListTileState extends State<ShoppingListTile>
         if (details.reached) {
           _dismissAnimationController.forward();
         } else {
-          _dismissAnimationController.reverse();
+          _dismissAnimationController.animateBack(
+            0.0,
+            duration: aMillisecond * 400,
+          );
         }
       },
       onDismissed: (_) {
-        context.read<ListsCubit>().listRemoved(widget.shoppingList);
+        context
+            .read<ListsOverviewScreenCubit>()
+            .listRemoved(widget.shoppingList);
       },
       key: Key('ListListTile_${widget.shoppingList.key}'),
       background: Container(
@@ -93,13 +101,19 @@ class _ShoppingListTileState extends State<ShoppingListTile>
       child: ListTile(
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 18.0,
-          vertical: 12.0,
+          vertical: 4.0,
         ),
         onTap: () => context.navigator.pushNamed(
-          QRouter.editListRoute,
+          QRouter.shoppingListRoute,
           arguments: widget.shoppingList,
         ),
         title: Text(widget.shoppingList.name),
+        subtitle: Text('$productsAmount ${Intl.plural(
+          productsAmount,
+          one: 'product',
+          two: 'products',
+          other: 'products',
+        )}'),
         leading: Container(
           height: 52.0,
           width: 52.0,
@@ -114,6 +128,7 @@ class _ShoppingListTileState extends State<ShoppingListTile>
             ),
           ),
         ),
+        trailing: const Icon(Icons.chevron_right_rounded),
       ),
     );
   }

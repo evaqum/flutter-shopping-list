@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../application/edit_list_screen/cubit.dart';
-import '../../../utils/helpers/extensions.dart';
-import '../../core/text_field.dart';
 
 class ListNameField extends StatelessWidget {
   final FocusNode focusNode;
@@ -18,12 +16,15 @@ class ListNameField extends StatelessWidget {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: QTextField(
-          height: 64.0,
-          focusNode: focusNode,
-          backgroundColor: context.theme.colorScheme.surfaceVariant,
+        child: TextFormField(
           initialValue: cubit.state.name,
           onChanged: cubit.nameChanged,
+          decoration: InputDecoration(
+            hintText: 'Shopping list name',
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16.0),
+            ),
+          ),
         ),
       ),
     );

@@ -15,13 +15,14 @@ class ShoppingListRepository {
 
   void _updateStreamValue() => _streamController.add(_box.values.toList());
 
-  void updateList(ShoppingList list, [dynamic key]) {
+  void updateList(ShoppingList list, [dynamic key]) async {
     if (key == null) {
-      _box.add(list);
-      return _updateStreamValue();
+      await _box.add(list);
+      _updateStreamValue();
+      return;
     }
 
-    _box.put(key, list);
+    await _box.put(key, list);
     _updateStreamValue();
   }
 

@@ -70,9 +70,10 @@ class _EditListView extends StatelessWidget {
       child: Builder(builder: (context) {
         return Scaffold(
           appBar: QAppBar(
-            title: Text(isNewList ? 'Add shopping list' : 'Edit shopping list'),
+            title: Text(isNewList ? 'Add shopping list' : 'Shopping list'),
           ),
-          floatingActionButton: SaveButton(cubit: cubit),
+          floatingActionButton:
+              cubit.state.name.isNotEmpty ? const SaveButton() : null,
           body: _Body(
             cubit: cubit,
             titleFocusNode: titleFocusNode,
@@ -112,6 +113,21 @@ class _Body extends StatelessWidget {
                   cubit: cubit,
                 ),
               ],
+            ),
+            const SizedBox(height: 16.0),
+            TextFormField(
+              initialValue: cubit.state.productName,
+              onChanged: cubit.productNameUpdated,
+              onFieldSubmitted: (_) => cubit.productAdded(),
+            ),
+            ...cubit.state.products.map(
+              (product) => ListTile(
+                title: Text(product.title),
+                leading: Checkbox(
+                  onChanged: (value) => cubit.productChecked(product, value!),
+                  value: product.checked,
+                ),
+              ),
             ),
           ],
         ),

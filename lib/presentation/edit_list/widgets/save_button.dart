@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../application/edit_list_screen/cubit.dart';
 import '../../../utils/helpers/extensions.dart';
 
 class SaveButton extends StatelessWidget {
-  final EditListScreenCubit cubit;
-  const SaveButton({super.key, required this.cubit});
+  const SaveButton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    if (cubit.state.name.isEmpty) {
-      return const SizedBox.shrink();
-    }
+    EditListScreenCubit cubit = context.read();
+
     return FloatingActionButton(
       onPressed: () {
-        cubit.savePressed();
+        cubit.listSaved();
         context.navigator.pop();
       },
       child: const Icon(Icons.save_outlined),
