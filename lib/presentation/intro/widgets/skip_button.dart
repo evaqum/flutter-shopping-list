@@ -35,16 +35,15 @@ class SkipButton extends StatelessWidget {
           child: Ink(
             child: InkWell(
               borderRadius: BorderRadius.circular(16.0),
-              onTap: () {
-                if (isLastPage) {
-                  return;
-                }
-                pageController?.animateToPage(
-                  pagesLength - 1,
-                  duration: aMillisecond * 500,
-                  curve: Curves.easeInOutCubic,
-                );
-              },
+              onTap: isLastPage
+                  ? null
+                  : () {
+                      pageController?.animateToPage(
+                        pagesLength - 1,
+                        duration: aMillisecond * 500,
+                        curve: Curves.easeInOutCubic,
+                      );
+                    },
               child: const Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: 18.0,

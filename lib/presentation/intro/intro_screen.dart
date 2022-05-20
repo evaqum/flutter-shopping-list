@@ -26,24 +26,23 @@ class IntroScreen extends StatelessWidget {
 
 class _IntroScreenView extends StatelessWidget {
   final PageController _pageController = PageController();
-  static const List<Widget> _pages = [
+  static final List<Widget> _pages = [
     IntroPage(
-      header: 'Shopping might be boring',
-      subheader: 'Dude just buy stuff with delivery',
+      header: 'This DUCK is DRIPPIN',
+      subheader: 'Go get some DRIP like this DUCK',
+      child: Image.asset('assets/intro1.jpg'),
     ),
     IntroPage(
-      header: "I'm making this for experience",
-      subheader:
-          'Actually I just want a job so I could buy a lot of funny stuff\n'
-          'and maybe leave this country',
+      header: 'Delivering toilets everywhere',
+      subheader: 'Our high-quality delivery service will find you!\n'
+          "Even when you don't want us to!\n"
+          "And that's totally related to the topic of this app!",
+      child: Image.asset('assets/intro2.jpg'),
     ),
     IntroPage(
-      header: 'NACHINAEM?',
-      subheader: 'POGGers',
-      child: FlutterLogo(
-        style: FlutterLogoStyle.markOnly,
-        size: 256.0,
-      ),
+      header: "Here's our phone",
+      subheader: 'Feel free to call us at any time',
+      child: Image.asset('assets/intro3.jpg'),
     ),
   ];
 

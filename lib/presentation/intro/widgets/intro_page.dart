@@ -20,7 +20,10 @@ class IntroPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        if (child != null) Expanded(child: child!),
+        if (child != null) ...[
+          Expanded(child: child!),
+          const SizedBox(height: 16.0),
+        ],
         Text(
           header,
           style: context.textTheme.headline5,
