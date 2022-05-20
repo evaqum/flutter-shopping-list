@@ -5,8 +5,6 @@ import 'package:quiver/time.dart';
 import '../../application/lists_overview_screen/cubit.dart';
 import '../../application/new_list_sheet/cubit.dart';
 import '../../injection.dart';
-import '../../utils/constants.dart';
-import '../core/app_bar.dart';
 import 'widgets/new_list_sheet.dart';
 import 'widgets/no_lists_placeholder.dart';
 import 'widgets/shopping_list_tile.dart';
@@ -54,9 +52,8 @@ class _ListsOverviewView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: QAppBar(
+      appBar: AppBar(
         title: const Text('Shopping lists'),
-        systemOverlayStyle: transparentStatusBarOverlayStyle,
       ),
       body: BlocConsumer<ListsOverviewScreenCubit, ListsOverviewScreenState>(
         listenWhen: (previous, current) {

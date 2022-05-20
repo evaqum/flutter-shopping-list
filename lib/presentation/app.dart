@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../application/app/cubit.dart';
@@ -25,9 +26,18 @@ class _AppView extends StatelessWidget {
     bool seenIntro = context.select((AppCubit cubit) => cubit.state.seenIntro);
 
     return MaterialApp(
-      initialRoute: seenIntro ? QRouter.overviewRoute : QRouter.introRoute,
+      // initialRoute: seenIntro ? QRouter.overviewRoute : QRouter.introRoute,
+      initialRoute: QRouter.introRoute,
       onGenerateRoute: QRouter.onGenerateRoute,
-      theme: ThemeData(useMaterial3: true),
+      theme: ThemeData(
+        useMaterial3: true,
+        appBarTheme: const AppBarTheme(
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarColor: Colors.transparent,
+            statusBarIconBrightness: Brightness.dark,
+          ),
+        ),
+      ),
     );
   }
 }

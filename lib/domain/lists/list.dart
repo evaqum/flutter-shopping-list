@@ -44,4 +44,9 @@ class ShoppingList extends HiveObject with _$ShoppingList {
   }) = _Default;
 
   ShoppingListStyle get style => ShoppingListStyle.values[styleIndex];
+
+  @override
+  String toString() {
+    return 'KEY $key KEY';
+  }
 }

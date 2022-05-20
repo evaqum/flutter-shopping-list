@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../core/app_bar.dart';
-
 class UnreachableScreen extends StatelessWidget {
   final RouteSettings settings;
 
@@ -19,7 +17,7 @@ class UnreachableScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: QAppBar(
+      appBar: AppBar(
         title: const Text('⚠️ Oops'),
       ),
       body: Text(

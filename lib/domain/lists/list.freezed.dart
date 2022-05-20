@@ -147,11 +147,6 @@ class _$_Default extends _Default {
   final int styleIndex;
 
   @override
-  String toString() {
-    return 'ShoppingList(name: $name, products: $products, styleIndex: $styleIndex)';
-  }
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&

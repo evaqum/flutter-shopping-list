@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
@@ -10,20 +11,26 @@ class ShoppingListRepository {
   final _streamController = BehaviorSubject<List<ShoppingList>>.seeded(
     _box.values.toList(),
   );
+  final _boxListenable = _box.listenable();
+  late final VoidCallback _boxListener;
+
+  ShoppingListRepository() {
+    _boxListener = () {
+      _streamController.add(_box.values.toList());
+    };
+
+    _boxListenable.addListener(_boxListener);
+  }
 
   ValueStream<List<ShoppingList>> get lists => _streamController.stream;
 
-  void _updateStreamValue() => _streamController.add(_box.values.toList());
-
   void updateList(ShoppingList list, [dynamic key]) async {
-    if (key == null) {
+    if (key == null && list.key == null) {
       await _box.add(list);
-      _updateStreamValue();
       return;
     }
 
-    await _box.put(key, list);
-    _updateStreamValue();
+    await _box.put(key ?? list.key, list);
   }
 
   void deleteList(ShoppingList list) {
@@ -31,10 +38,9 @@ class ShoppingListRepository {
       return;
     }
     _box.delete(list.key);
-    _updateStreamValue();
   }
 
-  // List<ShoppingList> getLists() {
-  //   return _box.values.toList();
-  // }
+  void dispose() {
+    _boxListenable.removeListener(_boxListener);
+  }
 }

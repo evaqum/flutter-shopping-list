@@ -59,20 +59,6 @@ class NewListSheet extends StatelessWidget {
                           ? const _StyleSelector()
                           : _NameField(nameFocusNode: nameFocusNode),
                     ),
-                    // child: Stack(
-                    //   children: [
-                    //     AnimatedOpacity(
-                    //       duration: aMillisecond * 300,
-                    //       opacity: cubit.state.showStyleSelector ? 0.0 : 1.0,
-                    //       child: _NameField(nameFocusNode: nameFocusNode),
-                    //     ),
-                    //     AnimatedOpacity(
-                    //       duration: aMillisecond * 300,
-                    //       opacity: cubit.state.showStyleSelector ? 1.0 : 0.0,
-                    //       child: const _StyleSelector(),
-                    //     ),
-                    //   ],
-                    // ),
                   ),
                 ),
                 Ink(
