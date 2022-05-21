@@ -10,7 +10,7 @@ Based shopping list app made with Flutter and a bit of love
 
 ## What works right now and what will maybe work later
 
-- [ ] Make cool onboarding (somewhat done)
+- [x] Make cool onboarding (somewhat done)
 - [x] Make shopping lists
   - [ ] Add products to shopping lists
   - [ ] Add products to shopping lists by barcode
