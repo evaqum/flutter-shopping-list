@@ -24,13 +24,10 @@ class ShoppingListRepository {
 
   ValueStream<List<ShoppingList>> get lists => _streamController.stream;
 
-  void updateList(ShoppingList list, [dynamic key]) async {
-    if (key == null && list.key == null) {
-      await _box.add(list);
-      return;
-    }
+  int getFreeId() => _streamController.value.isEmpty ? 1 : _streamController.value.last.id + 1;
 
-    await _box.put(key ?? list.key, list);
+  void updateList(ShoppingList list) async {
+    await _box.put('id_${list.id}', list);
   }
 
   void deleteList(ShoppingList list) {
@@ -40,6 +37,7 @@ class ShoppingListRepository {
     _box.delete(list.key);
   }
 
+  @disposeMethod
   void dispose() {
     _boxListenable.removeListener(_boxListener);
   }

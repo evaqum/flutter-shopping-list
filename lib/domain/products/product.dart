@@ -11,7 +11,7 @@ class Product with _$Product {
   @HiveType(typeId: 0, adapterName: 'ProductAdapter')
   const factory Product({
     @HiveField(0) required String title,
-    @HiveField(1) @Default(false) bool checked,
+    @HiveField(1) @Default(false) bool isDone,
     @HiveField(2) required int id,
   }) = _Default;
 }

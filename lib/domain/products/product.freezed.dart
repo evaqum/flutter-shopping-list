@@ -19,7 +19,7 @@ mixin _$Product {
   @HiveField(0)
   String get title => throw _privateConstructorUsedError;
   @HiveField(1)
-  bool get checked => throw _privateConstructorUsedError;
+  bool get isDone => throw _privateConstructorUsedError;
   @HiveField(2)
   int get id => throw _privateConstructorUsedError;
 
@@ -33,7 +33,7 @@ abstract class $ProductCopyWith<$Res> {
       _$ProductCopyWithImpl<$Res>;
   $Res call(
       {@HiveField(0) String title,
-      @HiveField(1) bool checked,
+      @HiveField(1) bool isDone,
       @HiveField(2) int id});
 }
 
@@ -48,7 +48,7 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
   @override
   $Res call({
     Object? title = freezed,
-    Object? checked = freezed,
+    Object? isDone = freezed,
     Object? id = freezed,
   }) {
     return _then(_value.copyWith(
@@ -56,9 +56,9 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      checked: checked == freezed
-          ? _value.checked
-          : checked // ignore: cast_nullable_to_non_nullable
+      isDone: isDone == freezed
+          ? _value.isDone
+          : isDone // ignore: cast_nullable_to_non_nullable
               as bool,
       id: id == freezed
           ? _value.id
@@ -76,7 +76,7 @@ abstract class _$$_DefaultCopyWith<$Res> implements $ProductCopyWith<$Res> {
   @override
   $Res call(
       {@HiveField(0) String title,
-      @HiveField(1) bool checked,
+      @HiveField(1) bool isDone,
       @HiveField(2) int id});
 }
 
@@ -92,7 +92,7 @@ class __$$_DefaultCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
   @override
   $Res call({
     Object? title = freezed,
-    Object? checked = freezed,
+    Object? isDone = freezed,
     Object? id = freezed,
   }) {
     return _then(_$_Default(
@@ -100,9 +100,9 @@ class __$$_DefaultCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      checked: checked == freezed
-          ? _value.checked
-          : checked // ignore: cast_nullable_to_non_nullable
+      isDone: isDone == freezed
+          ? _value.isDone
+          : isDone // ignore: cast_nullable_to_non_nullable
               as bool,
       id: id == freezed
           ? _value.id
@@ -118,7 +118,7 @@ class __$$_DefaultCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
 class _$_Default implements _Default {
   const _$_Default(
       {@HiveField(0) required this.title,
-      @HiveField(1) this.checked = false,
+      @HiveField(1) this.isDone = false,
       @HiveField(2) required this.id});
 
   @override
@@ -127,14 +127,14 @@ class _$_Default implements _Default {
   @override
   @JsonKey()
   @HiveField(1)
-  final bool checked;
+  final bool isDone;
   @override
   @HiveField(2)
   final int id;
 
   @override
   String toString() {
-    return 'Product(title: $title, checked: $checked, id: $id)';
+    return 'Product(title: $title, isDone: $isDone, id: $id)';
   }
 
   @override
@@ -143,7 +143,7 @@ class _$_Default implements _Default {
         (other.runtimeType == runtimeType &&
             other is _$_Default &&
             const DeepCollectionEquality().equals(other.title, title) &&
-            const DeepCollectionEquality().equals(other.checked, checked) &&
+            const DeepCollectionEquality().equals(other.isDone, isDone) &&
             const DeepCollectionEquality().equals(other.id, id));
   }
 
@@ -151,7 +151,7 @@ class _$_Default implements _Default {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(title),
-      const DeepCollectionEquality().hash(checked),
+      const DeepCollectionEquality().hash(isDone),
       const DeepCollectionEquality().hash(id));
 
   @JsonKey(ignore: true)
@@ -163,7 +163,7 @@ class _$_Default implements _Default {
 abstract class _Default implements Product {
   const factory _Default(
       {@HiveField(0) required final String title,
-      @HiveField(1) final bool checked,
+      @HiveField(1) final bool isDone,
       @HiveField(2) required final int id}) = _$_Default;
 
   @override
@@ -171,7 +171,7 @@ abstract class _Default implements Product {
   String get title => throw _privateConstructorUsedError;
   @override
   @HiveField(1)
-  bool get checked => throw _privateConstructorUsedError;
+  bool get isDone => throw _privateConstructorUsedError;
   @override
   @HiveField(2)
   int get id => throw _privateConstructorUsedError;

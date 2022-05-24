@@ -24,6 +24,8 @@ mixin _$ShoppingList {
 // @HiveField(3) int? colorHex,
   @HiveField(4)
   int get styleIndex => throw _privateConstructorUsedError;
+  @HiveField(5)
+  int get id => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ShoppingListCopyWith<ShoppingList> get copyWith =>
@@ -38,7 +40,8 @@ abstract class $ShoppingListCopyWith<$Res> {
   $Res call(
       {@HiveField(0) String name,
       @HiveField(1) List<Product> products,
-      @HiveField(4) int styleIndex});
+      @HiveField(4) int styleIndex,
+      @HiveField(5) int id});
 }
 
 /// @nodoc
@@ -54,6 +57,7 @@ class _$ShoppingListCopyWithImpl<$Res> implements $ShoppingListCopyWith<$Res> {
     Object? name = freezed,
     Object? products = freezed,
     Object? styleIndex = freezed,
+    Object? id = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
@@ -67,6 +71,10 @@ class _$ShoppingListCopyWithImpl<$Res> implements $ShoppingListCopyWith<$Res> {
       styleIndex: styleIndex == freezed
           ? _value.styleIndex
           : styleIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -82,7 +90,8 @@ abstract class _$$_DefaultCopyWith<$Res>
   $Res call(
       {@HiveField(0) String name,
       @HiveField(1) List<Product> products,
-      @HiveField(4) int styleIndex});
+      @HiveField(4) int styleIndex,
+      @HiveField(5) int id});
 }
 
 /// @nodoc
@@ -99,6 +108,7 @@ class __$$_DefaultCopyWithImpl<$Res> extends _$ShoppingListCopyWithImpl<$Res>
     Object? name = freezed,
     Object? products = freezed,
     Object? styleIndex = freezed,
+    Object? id = freezed,
   }) {
     return _then(_$_Default(
       name: name == freezed
@@ -113,6 +123,10 @@ class __$$_DefaultCopyWithImpl<$Res> extends _$ShoppingListCopyWithImpl<$Res>
           ? _value.styleIndex
           : styleIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -124,7 +138,8 @@ class _$_Default extends _Default {
   _$_Default(
       {@HiveField(0) required this.name,
       @HiveField(1) required final List<Product> products,
-      @HiveField(4) this.styleIndex = 0})
+      @HiveField(4) this.styleIndex = 0,
+      @HiveField(5) required this.id})
       : _products = products,
         super._();
 
@@ -145,6 +160,14 @@ class _$_Default extends _Default {
   @JsonKey()
   @HiveField(4)
   final int styleIndex;
+  @override
+  @HiveField(5)
+  final int id;
+
+  @override
+  String toString() {
+    return 'ShoppingList(name: $name, products: $products, styleIndex: $styleIndex, id: $id)';
+  }
 
   @override
   bool operator ==(dynamic other) {
@@ -154,7 +177,8 @@ class _$_Default extends _Default {
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other._products, _products) &&
             const DeepCollectionEquality()
-                .equals(other.styleIndex, styleIndex));
+                .equals(other.styleIndex, styleIndex) &&
+            const DeepCollectionEquality().equals(other.id, id));
   }
 
   @override
@@ -162,7 +186,8 @@ class _$_Default extends _Default {
       runtimeType,
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(_products),
-      const DeepCollectionEquality().hash(styleIndex));
+      const DeepCollectionEquality().hash(styleIndex),
+      const DeepCollectionEquality().hash(id));
 
   @JsonKey(ignore: true)
   @override
@@ -174,7 +199,8 @@ abstract class _Default extends ShoppingList {
   factory _Default(
       {@HiveField(0) required final String name,
       @HiveField(1) required final List<Product> products,
-      @HiveField(4) final int styleIndex}) = _$_Default;
+      @HiveField(4) final int styleIndex,
+      @HiveField(5) required final int id}) = _$_Default;
   _Default._() : super._();
 
   @override
@@ -187,6 +213,9 @@ abstract class _Default extends ShoppingList {
 // @HiveField(3) int? colorHex,
   @HiveField(4)
   int get styleIndex => throw _privateConstructorUsedError;
+  @override
+  @HiveField(5)
+  int get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_DefaultCopyWith<_$_Default> get copyWith =>

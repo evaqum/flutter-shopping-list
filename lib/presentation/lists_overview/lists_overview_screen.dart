@@ -57,23 +57,20 @@ class _ListsOverviewView extends StatelessWidget {
       ),
       body: BlocConsumer<ListsOverviewScreenCubit, ListsOverviewScreenState>(
         listenWhen: (previous, current) {
-          return previous.lastDeletedShoppingList !=
-                  current.lastDeletedShoppingList &&
-              current.lastDeletedShoppingList != null;
+          return previous.lastDeletedShoppingList != current.lastDeletedShoppingList && current.lastDeletedShoppingList != null;
         },
         listener: (context, state) {
           ScaffoldMessenger.of(context)
             ..clearSnackBars()
             ..showSnackBar(
               SnackBar(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
                 content: const Text('1 list deleted'),
                 dismissDirection: DismissDirection.horizontal,
                 behavior: SnackBarBehavior.floating,
                 action: SnackBarAction(
                   label: 'UNDO',
-                  onPressed: () => context
-                      .read<ListsOverviewScreenCubit>()
-                      .restoreLastDeleted(),
+                  onPressed: () => context.read<ListsOverviewScreenCubit>().restoreLastDeleted(),
                 ),
               ),
             );

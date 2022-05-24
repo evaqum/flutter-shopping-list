@@ -10,8 +10,7 @@ part 'state.dart';
 @injectable
 class IntroScreenCubit extends Cubit<IntroScreenState> {
   final PreferencesRepository _preferencesRepository;
-  IntroScreenCubit(this._preferencesRepository)
-      : super(const IntroScreenState());
+  IntroScreenCubit(this._preferencesRepository) : super(const IntroScreenState());
 
   void pageChanged(int index) {
     emit(state.copyWith(currentPageIndex: index));

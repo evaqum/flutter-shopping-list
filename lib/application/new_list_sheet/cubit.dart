@@ -11,8 +11,7 @@ part 'state.dart';
 @injectable
 class NewListSheetCubit extends Cubit<NewListSheetState> {
   final ShoppingListRepository _shoppingListRepository;
-  NewListSheetCubit(this._shoppingListRepository)
-      : super(const NewListSheetState());
+  NewListSheetCubit(this._shoppingListRepository) : super(const NewListSheetState());
 
   void nameChanged(String name) {
     emit(state.copyWith(name: name));
@@ -35,6 +34,7 @@ class NewListSheetCubit extends Cubit<NewListSheetState> {
         name: state.name,
         styleIndex: state.listStyle.index,
         products: [],
+        id: _shoppingListRepository.getFreeId(),
       ),
     );
   }

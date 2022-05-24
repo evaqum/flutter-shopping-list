@@ -11,6 +11,5 @@ part 'state.dart';
 class AppCubit extends Cubit<AppState> {
   // ignore: unused_field
   final PreferencesRepository _preferencesRepository;
-  AppCubit(this._preferencesRepository)
-      : super(AppState(seenIntro: _preferencesRepository.introSeen));
+  AppCubit(this._preferencesRepository) : super(AppState(seenIntro: _preferencesRepository.introSeen));
 }

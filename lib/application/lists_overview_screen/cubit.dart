@@ -15,8 +15,7 @@ class ListsOverviewScreenCubit extends Cubit<ListsOverviewScreenState> {
   final ShoppingListRepository _shoppingListRepository;
   late final StreamSubscription<List<ShoppingList>> _streamSubscription;
 
-  ListsOverviewScreenCubit(this._shoppingListRepository)
-      : super(const ListsOverviewScreenState()) {
+  ListsOverviewScreenCubit(this._shoppingListRepository) : super(const ListsOverviewScreenState()) {
     _streamSubscription = _shoppingListRepository.lists.listen((listsList) {
       emit(state.copyWith(shoppingLists: listsList));
     });
@@ -36,7 +35,9 @@ class ListsOverviewScreenCubit extends Cubit<ListsOverviewScreenState> {
       return;
     }
 
-    _shoppingListRepository.updateList(state.lastDeletedShoppingList!);
+    _shoppingListRepository.updateList(state.lastDeletedShoppingList!.copyWith(
+      id: _shoppingListRepository.getFreeId(),
+    ));
     emit(state.copyWith(lastDeletedShoppingList: null));
   }
 

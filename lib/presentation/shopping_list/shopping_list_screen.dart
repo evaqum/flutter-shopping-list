@@ -6,6 +6,8 @@ import '../../data/shopping_list_repository.dart';
 import '../../domain/lists/list.dart';
 import '../../injection.dart';
 import '../../utils/helpers/extensions.dart';
+import '../barcode_scan/barcode_scan_screen.dart';
+import 'widgets/product_list_tile.dart';
 
 class ShoppingListScreen extends StatelessWidget {
   final ShoppingList shoppingList;
@@ -60,41 +62,31 @@ class _ShoppingListScreenView extends StatelessWidget {
             ]),
           ),
         ),
+        floatingActionButton: FloatingActionButton.extended(
+          icon: const Icon(Icons.camera_alt_outlined),
+          label: const Text('Scan a barcode'),
+          onPressed: () => context.navigator.push(BarcodeScanScreen.route(cubit)),
+        ),
         body: ListView(
-          padding: const EdgeInsets.all(16.0),
           children: [
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.red.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              padding: const EdgeInsets.symmetric(
-                horizontal: 12.0,
-                vertical: 8.0,
-              ),
-              child: const Text(
-                'DO NOT TRY TO ADD MORE THAN ONE PRODUCT AT A TIME\n'
-                "BELIEVE ME YOU DON'T WANT THAT",
-                style: TextStyle(
-                  color: Colors.red,
-                  fontWeight: FontWeight.w900,
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: TextFormField(
+                controller: cubit.newProductNameController,
+                onChanged: cubit.newProductNameChanged,
+                onEditingComplete: cubit.newProductSaved,
+                decoration: InputDecoration(
+                  hintText: 'Add a new product...',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(16.0),
+                  ),
                 ),
               ),
             ),
-            const SizedBox(height: 8.0),
-            TextFormField(
-              controller: cubit.newProductNameController,
-              onChanged: cubit.newProductNameChanged,
-              onEditingComplete: cubit.newProductSaved,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16.0),
-                ),
-              ),
-            ),
-            for (var product in cubit.state.products)
-              ListTile(title: Text(product.title))
+            for (var product in cubit.state.products) ...[
+              const SizedBox(height: 4.0),
+              ProductListTile(product: product),
+            ],
           ],
         ),
       ),

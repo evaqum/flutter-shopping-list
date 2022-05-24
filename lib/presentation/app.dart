@@ -26,8 +26,7 @@ class _AppView extends StatelessWidget {
     bool seenIntro = context.select((AppCubit cubit) => cubit.state.seenIntro);
 
     return MaterialApp(
-      // initialRoute: seenIntro ? QRouter.overviewRoute : QRouter.introRoute,
-      initialRoute: QRouter.introRoute,
+      initialRoute: seenIntro ? QRouter.overviewRoute : QRouter.introRoute,
       onGenerateRoute: QRouter.onGenerateRoute,
       theme: ThemeData(
         useMaterial3: true,

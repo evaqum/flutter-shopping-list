@@ -55,9 +55,7 @@ class NewListSheet extends StatelessWidget {
                     child: AnimatedSwitcher(
                       duration: aMillisecond * 400,
                       switchInCurve: Curves.easeInOutCubic,
-                      child: cubit.state.showStyleSelector
-                          ? const _StyleSelector()
-                          : _NameField(nameFocusNode: nameFocusNode),
+                      child: cubit.state.showStyleSelector ? const _StyleSelector() : _NameField(nameFocusNode: nameFocusNode),
                     ),
                   ),
                 ),
@@ -102,9 +100,7 @@ class NewListSheet extends StatelessWidget {
               // borderRadius: const BorderRadius.vertical(
               //   top: Radius.circular(8.0),
               // ),
-              color: cubit.state.name.isNotEmpty
-                  ? context.theme.colorScheme.primary
-                  : context.theme.colorScheme.primary.withOpacity(0.2),
+              color: cubit.state.name.isNotEmpty ? context.theme.colorScheme.primary : context.theme.colorScheme.primary.withOpacity(0.2),
             ),
             child: InkWell(
               onTap: cubit.state.name.isNotEmpty
@@ -148,7 +144,7 @@ class NewListSheet extends StatelessWidget {
 }
 
 class _StyleSelector extends StatelessWidget {
-  const _StyleSelector({super.key});
+  const _StyleSelector();
 
   @override
   Widget build(BuildContext context) {
@@ -194,6 +190,10 @@ class _NameField extends StatelessWidget {
       focusNode: nameFocusNode,
       initialValue: cubit.state.name,
       onChanged: cubit.nameChanged,
+      onFieldSubmitted: (_) {
+        cubit.listSaved();
+        context.navigator.pop();
+      },
       decoration: const InputDecoration(
         label: Text('List name'),
         border: OutlineInputBorder(

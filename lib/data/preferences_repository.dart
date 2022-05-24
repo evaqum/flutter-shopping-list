@@ -18,6 +18,5 @@ class PreferencesRepository {
     return b;
   }
 
-  set introSeen(bool introSeen) =>
-      _sharedPreferences.setBool(_introSeenKey, introSeen);
+  set introSeen(bool introSeen) => _sharedPreferences.setBool(_introSeenKey, introSeen);
 }

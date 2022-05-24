@@ -20,17 +20,20 @@ class ShoppingListAdapter extends TypeAdapter<_$_Default> {
       name: fields[0] as String,
       products: (fields[1] as List).cast<Product>(),
       styleIndex: fields[4] as int,
+      id: fields[5] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, _$_Default obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(4)
       ..write(obj.styleIndex)
+      ..writeByte(5)
+      ..write(obj.id)
       ..writeByte(1)
       ..write(obj.products);
   }

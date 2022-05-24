@@ -41,12 +41,8 @@ class ShoppingList extends HiveObject with _$ShoppingList {
     // @HiveField(2) String? emoji,
     // @HiveField(3) int? colorHex,
     @HiveField(4) @Default(0) int styleIndex,
+    @HiveField(5) required int id,
   }) = _Default;
 
   ShoppingListStyle get style => ShoppingListStyle.values[styleIndex];
-
-  @override
-  String toString() {
-    return 'KEY $key KEY';
-  }
 }
